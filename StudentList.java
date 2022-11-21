@@ -66,19 +66,7 @@ public class StudentList {
 			try {
 				BufferedReader bufferreader = readfile();
 				char names[] = bufferreader.readLine().toCharArray();
-				boolean in_word = false;
-				int count = 0;
-				for (char ch : names) {
-					if (ch == constants.SPACE) {
-						if (!in_word) {
-							count++;
-							in_word = true;
-						} else {
-							in_word = false;
-						}
-					}
-				}
-				System.out.println(count + constants.FOUND_MESSAGE);
+				System.out.println(names.length + constants.FOUND_MESSAGE);
 				bufferreader.close();
 			} catch (Exception e) {
 			}
