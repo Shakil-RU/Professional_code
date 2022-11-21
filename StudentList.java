@@ -49,13 +49,13 @@ public class StudentList {
 			try {
 				BufferedReader bufferreader = readfile();
 				String studentnames[] = bufferreader.readLine().split(constants.COMMA);
-				boolean done = false;
 				String name = args[0].substring(1);
-				for (int index = 0; index < studentnames.length && !done; index++) {
+				int countNames = 0;
+				for (int index = 0; index < studentnames.length; index++) {
 					if (studentnames[index].trim().equals(name)) {
-						System.out.println(constants.WE_FOUND_MESSAGE);
-						done = true;
+						countNames = countNames + 1;
 					}
+
 				}
 				bufferreader.close();
 			} catch (Exception e) {
