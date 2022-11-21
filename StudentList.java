@@ -11,8 +11,7 @@ public class StudentList {
 			System.out.println(constants.LOADED_DATA);
 			try {
 				BufferedReader bufferreader = readfile();
-				String names = bufferreader.readLine();
-				String studentnames[] = names.split(constants.COMMA);
+				String studentnames[] = bufferreader.readLine().split(constants.COMMA);
 				for (String name : studentnames) {
 					System.out.println(name.trim());
 				}
@@ -24,10 +23,8 @@ public class StudentList {
 			System.out.println(constants.LOADED_DATA);
 			try {
 				BufferedReader bufferreader = readfile();
-				String names = bufferreader.readLine();
-				String studentnames[] = names.split(constants.COMMA);
-				Random random = new Random();
-				int randomindex = random.nextInt(studentnames.length);
+				String studentnames[] = bufferreader.readLine().split(constants.COMMA);
+				int randomindex = new Random().nextInt(studentnames.length);
 				System.out.println(studentnames[randomindex].trim());
 				bufferreader.close();
 			} catch (Exception e) {
@@ -39,8 +36,7 @@ public class StudentList {
 				BufferedWriter bufferwriter = writefile();
 				String name = args[0].substring(1);
 				Date date = new Date();
-				String dateformat = constants.DATE;
-				DateFormat dateFormat = new SimpleDateFormat(dateformat);
+				DateFormat dateFormat = new SimpleDateFormat(constants.DATE);
 				String formatdate = dateFormat.format(date);
 				bufferwriter.write(constants.COMMA + name + constants.LAST_UPDATE_MESSAGE + formatdate);
 				bufferwriter.close();
@@ -52,8 +48,7 @@ public class StudentList {
 			System.out.println(constants.LOADED_DATA);
 			try {
 				BufferedReader bufferreader = readfile();
-				String names = bufferreader.readLine();
-				String studentnames[] = names.split(constants.COMMA);
+				String studentnames[] = bufferreader.readLine().split(constants.COMMA);
 				boolean done = false;
 				String name = args[0].substring(1);
 				for (int index = 0; index < studentnames.length && !done; index++) {
@@ -70,8 +65,7 @@ public class StudentList {
 			System.out.println(constants.LOADED_DATA);
 			try {
 				BufferedReader bufferreader = readfile();
-				String name = bufferreader.readLine();
-				char names[] = name.toCharArray();
+				char names[] = bufferreader.readLine().toCharArray();
 				boolean in_word = false;
 				int count = 0;
 				for (char ch : names) {
