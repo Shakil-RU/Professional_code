@@ -4,13 +4,13 @@ import java.util.*;
 
 public class StudentList {
 	public static void main(String[] args) {
-
+		// checking Arguments.
 		if (args.length != 1) {
 			System.out.println(constants.INVALID_MESSAGE);
 		} else if (args[0].equals(constants.SHOW_ALL)) {
 			System.out.println(constants.LOADED_DATA);
 			try {
-				BufferedReader bufferreader = readfile();
+				BufferedReader bufferreader = readfile(); // read elements of file.
 				String studentnames[] = bufferreader.readLine().split(constants.COMMA);
 				for (String name : studentnames) {
 					System.out.println(name.trim());
@@ -19,18 +19,20 @@ public class StudentList {
 			} catch (Exception e) {
 			}
 			System.out.println(constants.DATA_LOADED);
-		} else if (args[0].equals(constants.RANDOM_NAME)) {
+		} // finding and printing random names from file.
+		else if (args[0].equals(constants.RANDOM_NAME)) {
 			System.out.println(constants.LOADED_DATA);
 			try {
 				BufferedReader bufferreader = readfile();
 				String studentnames[] = bufferreader.readLine().split(constants.COMMA);
-				int randomindex = new Random().nextInt(studentnames.length);
+				int randomindex = new Random().nextInt(studentnames.length); // Random object created
 				System.out.println(studentnames[randomindex].trim());
 				bufferreader.close();
 			} catch (Exception e) {
 			}
 			System.out.println(constants.DATA_LOADED);
-		} else if (args[0].contains(constants.PLUS)) {
+		} // added new elemrnt into the file.
+		else if (args[0].contains(constants.PLUS)) {
 			System.out.println(constants.LOADED_DATA);
 			try {
 				BufferedWriter bufferwriter = writefile();
@@ -44,7 +46,8 @@ public class StudentList {
 			}
 
 			System.out.println(constants.DATA_LOADED);
-		} else if (args[0].contains(constants.FIND)) {
+		} // find out the specific word from file.
+		else if (args[0].contains(constants.FIND)) {
 			System.out.println(constants.LOADED_DATA);
 			try {
 				BufferedReader bufferreader = readfile();
@@ -61,7 +64,8 @@ public class StudentList {
 			} catch (Exception e) {
 			}
 			System.out.println(constants.DATA_LOADED);
-		} else if (args[0].contains(constants.COUNT)) {
+		} // counting the words.
+		else if (args[0].contains(constants.COUNT)) {
 			System.out.println(constants.LOADED_DATA);
 			try {
 				BufferedReader bufferreader = readfile();
