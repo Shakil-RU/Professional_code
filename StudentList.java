@@ -5,7 +5,6 @@ import java.util.*;
 public class StudentList {
 	public static void main(String[] args) {
 
-		// Check arguments
 		if(args.length != 1)
 		{
           System.out.println("use valid argument\n a for show all\n r for random item\n c for count\n + for add new\n ? for find specific item\n");
@@ -13,9 +12,7 @@ public class StudentList {
 		else if (args[0].equals("a")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader bufferreader = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
+				BufferedReader bufferreader = readfile();
 				String names = bufferreader.readLine();
 				String studentnames[] = names.split(",");
 				for (String name : studentnames) {
@@ -28,9 +25,7 @@ public class StudentList {
 		} else if (args[0].equals("r")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader bufferreader = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
+				BufferedReader bufferreader = readfile();
 				String names = bufferreader.readLine();
 				String studentnames[] = names.split(",");
 				Random random = new Random();
@@ -43,8 +38,7 @@ public class StudentList {
 		} else if (args[0].contains("+")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedWriter bufferwriter = new BufferedWriter(
-						new FileWriter("students.txt", true));
+				BufferedWriter bufferwriter = writefile();
 				String name = args[0].substring(1);
 				Date date = new Date();
 				String dateformat = "dd/mm/yyyy-hh:mm:ss a";
@@ -59,15 +53,13 @@ public class StudentList {
 		} else if (args[0].contains("?")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader bufferreader = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
+				BufferedReader bufferreader = readfile();
 				String names =  bufferreader.readLine();
 				String studentnames[] = names.split(",");
 				boolean done = false;
 				String name = args[0].substring(1);
 				for (int index = 0; index < studentnames.length && !done; index++) {
-					if (studentnames[index].equals(name)) {
+					if (studentnames[index].trim().equals(name)) {
 						System.out.println("We found it!");
 						done = true;
 					}
@@ -79,9 +71,7 @@ public class StudentList {
 		} else if (args[0].contains("c")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader bufferreader = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
+				BufferedReader bufferreader = readfile();
 				String name = bufferreader.readLine();
 				char names[] = name.toCharArray();
 				boolean in_word = false;
@@ -106,5 +96,16 @@ public class StudentList {
 		{
 			System.out.println("use valid argument\n a for show all\n r for random item\n c for count\n + for add new\n ? for find specific item\n");
 		}
+	}
+
+	private static BufferedWriter writefile() throws IOException {
+		return new BufferedWriter(
+				new FileWriter("students.txt", true));
+	}
+
+	private static BufferedReader readfile() throws FileNotFoundException {
+		return new BufferedReader(
+				new InputStreamReader(
+						new FileInputStream("students.txt")));
 	}
 }
